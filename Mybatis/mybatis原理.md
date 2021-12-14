@@ -29,7 +29,7 @@
   ### （2）通过SqlSessionFactory创建SqlSession
      SqlSessionFactory中会调取openSession的方法，首先拿到之前解析配置文件得到的数据库环境配置，然后生成一个（Executor）执行器，然后
      使用默认的DefaultSqlSession生成一个SqlSession.
-  ###  (3) 通过SqlSession拿到Mapper对象的代理
+  ###  (3)通过SqlSession拿到Mapper对象的代理
      通过MapperProxyFactory的knowMapper.get(type) type:为UserMapper.生成mapperProxyFactory的单例对象，（生成的mapperProxy对象实现
      了InvovationHandler方法，Serializable.就是JDK动态代理中的方法调用处理器），通过mapperProxy对象生成一个Mapper的代理
   ### （4）通过MapperProxy调用Mapper中的相应方法；
