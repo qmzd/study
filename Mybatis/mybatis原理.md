@@ -1,4 +1,4 @@
-##Mybatis的核心类：
+## Mybatis的核心类：
 
   ### SqlSessionFactory: 
     每一个MyBatis的应用都是以一个SqlSessionFactory的实例为中心的，SqlSessionFactory的实例可以通过SqlSessionFactoryBuilder获得，
@@ -20,7 +20,7 @@
   ### MappedStatement：
     MappedStatement就是用来存放我们SQL映射文件中的信息包括sql语句，输入参数，输出参数等等。一个SQL节点对应一个MappedStatement对象。
 
-##Mybatis 加载步骤：
+## Mybatis 加载步骤：
 
   ### （1）加载配置文件构建工程类
      SqlSessionFactoryBuilder类的build（）方法中可以看到MyBatis内部定义了一个类XMLConfigBuilder用来解析配置文件myBatis-config.xml。
