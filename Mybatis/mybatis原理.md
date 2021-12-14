@@ -12,4 +12,22 @@
     通过try-finally来保证总是关闭SqlSession。
     
   ### Exector:
-    Executor（执行器）接口有两个实现类，其中BaseExecutor有三个继承类分别是BatchExecutor（重用语句并执行批量更新）处理语句prepared statement, 跟Simple的唯一区别是内部缓存statement）SimpleExecutor（默认，每次都会创建新个是主要的executor，通过下图可以看到mybatis在Executor的设计上面使用了装饰器模式，我们可以用CachingExecutor来装饰前面三个执的就是用
+    Executor（执行器）接口有两个实现类，其中BaseExecutor有三个继承类分别是BatchExecutor（重用语句并执行批量更新），ReuseExecutor
+    （重用预处理语句prepared statement，跟Simple的唯一区别就是内部缓存statement）,SimpleExecutor（默认，每次都会创建新的statement）
+    以上三个就是主要的Executor。通过下图可以看到Mybatis在Executor的设计上面使用了装饰器模式，我们可以用CachingExecutor来装饰前
+    面的三个执行器目的就是用来实现缓存。
+    
+  ### MappedStatement：
+    MappedStatement就是用来存放我们SQL映射文件中的信息包括sql语句，输入参数，输出参数等等。一个SQL节点对应一个MappedStatement对象。
+
+##Mybatis 加载步骤：
+
+  ### （1）加载配置文件构建工程类
+     SqlSessionFactoryBuilder类的build（）方法中可以看到MyBatis内部定义了一个类XMLConfigBuilder用来解析配置文件myBatis-config.xml。
+     针对配置文件中的每一个节点进行解析并将数据存放到Configuration这个对象中（mapperRegistry存放mapper标签的数据），紧接着使用带有
+     Configuration的构造方法返回一个工程类DefacutSqlSessionFactory。
+  ### （2）通过SqlSessionFactory创建SqlSession
+     SqlSessionFactory中会调取openSession的方法，首先拿到之前解析配置文件得到的数据库环境配置，然后生成一个（Executor）执行器，然后
+     使用默认的DefaultSqlSession生成一个SqlSession.
+  ###  (3) 通过SqlSession拿到Mapper对象的代理
+     通过MapperProxyFactory的knowMapper.get(type) type:为UserMapper.生成mapperProxyFactory的单例对象，
