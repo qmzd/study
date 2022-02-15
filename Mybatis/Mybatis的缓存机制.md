@@ -4,8 +4,8 @@
   mybatis提供查询缓存，用于减轻数据压力，提高数据库性能；
   mybatis提供一级缓存，和二级缓存。
   ![avatar](https://img-blog.csdn.net/20150726164148424?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
-  
-### 一级缓存
+ 
+## 一级缓存
   一级缓存是sqlsession级别的缓存，在操作数据库时需要构造sqlsession对象，在对象中有一个（内存区域）数据结构（HashMap）用于存储缓存数据，不同的sqlSession之间的缓存数据区域（hashMap）是相互不影响的。
   
    一级缓存的作用域是同一个sqlsession，在同一个sqlsession中两次执行相同的sql语句，**第一次执行完毕会将数据库中查询的数据写到缓存（内存），第二次会从缓存中获取数据将不再从数据库查询，从而提高查询效率。** 当一个sqlsession结束后该sqlsession中的一级缓存也就不存在了。mybatis默认开启一级缓存。
@@ -31,4 +31,13 @@
   c.如果SqlSession调用了clearCache()，会清空PerpetualCache对象中的数据，但是该对象仍可使用；
   
   d.SqlSession中执行了任何一个update操作（update,delete,insert）都会清空perpetualCache对象的数据，但该对象可以继续使用；
+  
+### 如何判断两次查询是完全相同的查询？
+  mybatis认为，对于两次查询，如果一下条件都完全一样，那么就认为他们是完全相同的两次查询。
+    1. 传入的statementID；
+    2. 查询时要求的结果集中的结果范围；---结果集
+    3.这次查询所产生的最终要传递的JDBC java.sql.Preparedstatement的Sql语句字符串（boundSql.getSql()）---sql语句
+    4.传递给java.sql.Statement要设置的参数值 ---参数值
 
+## 二级缓存
+  mybatis的二级缓存是Application[一级缓存：Session会话级别的缓存，位于表示一次数据库会话的SqlSession对象之中，即本地缓存；二级缓存：]级别的缓存，它可以提高数据库查询的效率，以提高应用的性能。
