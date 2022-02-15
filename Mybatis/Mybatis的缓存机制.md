@@ -3,8 +3,7 @@
 ### 什么是查询缓存？
   mybatis提供查询缓存，用于减轻数据压力，提高数据库性能；
   mybatis提供一级缓存，和二级缓存。
-  
-    ![avatar](https://img-blog.csdn.net/20150726164148424?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
+  ![avatar](https://img-blog.csdn.net/20150726164148424?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
   
 ### 一级缓存
   一级缓存是sqlsession级别的缓存，在操作数据库时需要构造sqlsession对象，在对象中有一个（内存区域）数据结构（HashMap）用于存储缓存数据，不同的sqlSession之间的缓存数据区域（hashMap）是相互不影响的。
