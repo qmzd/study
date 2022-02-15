@@ -40,4 +40,7 @@
     4.传递给java.sql.Statement要设置的参数值 ---参数值
 
 ## 二级缓存
-  mybatis的二级缓存是Application[一级缓存：Session会话级别的缓存，位于表示一次数据库会话的SqlSession对象之中，即本地缓存；二级缓存：]级别的缓存，它可以提高数据库查询的效率，以提高应用的性能。+ +  啊啊啊
+  mybatis的二级缓存是Application级别的缓存，它可以提高数据库查询的效率，以提高应用的性能。
+  mybatis的缓存机制整体设计以及二级缓存的工作模式
+  ![avatar](https://img-blog.csdnimg.cn/20201012134820519.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIzNzM4MTU=,size_16,color_FFFFFF,t_70)
+  
