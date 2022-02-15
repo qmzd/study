@@ -19,7 +19,7 @@
   
   通过源码我们知道每次SqlSession（准确的说是DefaultSqlSession）的创建都会有一个Transaction事物对象的生成。也就是说：
   1. 一个事物Transaction对象与一个SqlSession对象时一一对应的关系；
-  2. 同一个SqlSession不管执行多少次数据库操作，只要是没有执行close，name整个操作都是同一个Transaction中执行的。
+  2. 同一个SqlSession不管执行多少次数据库操作，只要是没有执行close，那么整个操作都是同一个Transaction中执行的。
 
 ![avatar](https://img-blog.csdnimg.cn/20201012134836126.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIzNzM4MTU=,size_16,color_FFFFFF,t_70)
 
