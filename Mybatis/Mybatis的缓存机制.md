@@ -19,6 +19,8 @@
   1. 一个事物Transaction对象与一个SqlSession对象时一一对应的关系；
   2. 同一个SqlSession不管执行多少次数据库操作，只要是没有执行close，name整个操作都是同一个Transaction中执行的。
 
+  ![avatar](http://baidu.com/pic/doge.png)
+
 ### 一级缓存的生命周期有多长？
   a.mybatis在开启一个数据库会话时，会创建一个新的sqlSession对象，SqlSession对象中会有一个新的Executor对象，Executor对象中持有一个新的PerpetualCache对象；当回话结束时，SqlSessioN对象及其内部的Exceutor对象还有PerpetualCache对象也一并释放掉。
   
