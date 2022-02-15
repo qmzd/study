@@ -44,7 +44,7 @@
   mybatis的缓存机制整体设计以及二级缓存的工作模式
   ![avatar](https://img-blog.csdnimg.cn/20201012134820519.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIzNzM4MTU=,size_16,color_FFFFFF,t_70)
   
- 二级缓存是Mapper级别的缓存，多个Sqlsession去操作同一个Mapper的Sql语句，多个SqlSession去操作数据库得到的数据会存二级缓存区域，多个SqlSession可以共用二级缓存，**二级缓存是跨SqlSession的。 **
+ 二级缓存是Mapper级别的缓存，多个Sqlsession去操作同一个Mapper的Sql语句，多个SqlSession去操作数据库得到的数据会存二级缓存区域，多个SqlSession可以共用二级缓存，**二级缓存是跨SqlSession的**
 
 二级缓存是多个SqlSession共享的，其作用域是mapper的同一个namespace,不同的sqlSession两次执行相同namespace下的sql语句且向sql中传递参数也相同即最终执行相同的sql语句，第一次执行完毕会将数据库中查询的数据写到缓存（内存），第二次会从缓存中获取数据将不再从数据库查询，从而提高查询效率。**Mybatis默认没有开启二级缓存**需要在setting全局参数中配置开启二级缓存。
 
