@@ -12,6 +12,10 @@
   
   
   一级缓存只是相对于同一个SqlSession而言。所以在参数和SQL完全一样的情况下，我们使用同一个SqlSession对象调用一个Mapper方法，往往只执行一次SQL，因为使用SqlSession第一次查询后，MyBatis会将其放在缓存中，以后在查询的时候，如果没有声明需要刷新，并且缓存没有超市的情况下，SqlSession都会去除当前的缓存数据，而不会再次发送Sql到数据库。
+  
+  通过源码我们知道每次SqlSession（准确的说是DefaultSqlSession）的创建都会有一个Transaction事物对象的生成。也就是说：
+  1. 一个事物Transaction对象与一个SqlSession对象时一一对应的关系；
+  2. 同一个SqlSession不管执行多少次数据库操作，只要是没有执行close，name整个操作都是同一个Transaction中执行的。
 
 ### 一级缓存的生命周期有多长？
   a.mybatis在开启一个数据库会话时，会创建一个新的sqlSession对象，SqlSession对象中会有一个新的Executor对象，Executor对象中持有一个新的PerpetualCache对象；当回话结束时，SqlSessioN对象及其内部的Exceutor对象还有PerpetualCache对象也一并释放掉。
@@ -21,3 +25,4 @@
   c.如果SqlSession调用了clearCache()，会清空PerpetualCache对象中的数据，但是该对象仍可使用；
   
   d.SqlSession中执行了任何一个update操作（update,delete,insert）都会清空perpetualCache对象的数据，但该对象可以继续使用；
+
