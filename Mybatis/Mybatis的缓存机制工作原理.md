@@ -32,5 +32,6 @@
 
 ###  useCache配置禁用二级缓存
   在statement中设置userCache=false可以禁用当前select语句的二级缓存，即每次查询都会发出sql去查询，默认情况true,即sql使用二级缓存。
+  
       <select id="getallinfo" resultType="dao.entity.PhoneInfoEntity" userCache="false">
   
