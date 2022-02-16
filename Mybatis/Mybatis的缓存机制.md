@@ -18,8 +18,8 @@
   一级缓存只是相对于同一个SqlSession而言。所以在参数和SQL完全一样的情况下，我们使用同一个SqlSession对象调用一个Mapper方法，往往只执行一次SQL，因为使用SqlSession第一次查询后，MyBatis会将其放在缓存中，以后在查询的时候，如果没有声明需要刷新，并且缓存没有超时的情况下，SqlSession都会取出当前的缓存数据，而不会再次发送Sql到数据库。
   
   通过源码我们知道每次SqlSession（准确的说是DefaultSqlSession）的创建都会有一个Transaction事物对象的生成。也就是说：
- ** 1. 一个事物Transaction对象与一个SqlSession对象时一一对应的关系；
-  2. 同一个SqlSession不管执行多少次数据库操作，只要是没有执行close，那么整个操作都是同一个Transaction中执行的。**
+  1. 一个事物Transaction对象与一个SqlSession对象时一一对应的关系；
+  2. 同一个SqlSession不管执行多少次数据库操作，只要是没有执行close，那么整个操作都是同一个Transaction中执行的。
 
 ![avatar](https://img-blog.csdnimg.cn/20201012134836126.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIzNzM4MTU=,size_16,color_FFFFFF,t_70)
 
