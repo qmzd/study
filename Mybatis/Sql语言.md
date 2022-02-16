@@ -51,5 +51,20 @@
    count(列名)	  统计记录数	注意和count(*)的区别
    
    #### 5.1 分组后求各组平均值
-        select type, avg(number) AS numAvg from A group by type; 
-  
+        select type, avg(number) AS numAvg from t_wwgroup group by type; 
+        
+   #### 5.2 分组后记录各组数目
+        select type ,count(*) AS n from t_wwgroup group by type;
+        
+ ### 6. Having与Where的区别
+   where 子句的作用是在对查询结果进行分组前，提前约定范围；将不符合where条件的行去掉，即在分组之前过滤数据，**where条件中不能包含聚合函数** 
+       
+   having 子句的作用是在对查询结果进行分组后，筛选出满足条件的组；即在分组后过滤数据，条件中经常包含聚合函数，使用having条件过滤出特定的组，也可以使用多个分组准进行分组；
+   
+       例：having
+       select type,sum(number) as count from t_wwgroup group by type having sum(number) > 18
+       例：having + where
+       select type,sum(number) as count from t_wwgroup where number > 8 group by type having sum(number) > 9
+       
+ ### 7. Compute 和 Compute By
+    
