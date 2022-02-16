@@ -33,3 +33,16 @@
    返回结果：
    ![avatar](https://images0.cnblogs.com/blog/33509/201304/28234156-7fb9d1f258ad4faaa26decfddc3723fc.png)
    
+ ### 5. Group By与聚合函数
+   3中提到group by语句中select指定的字段必须是“分组依据字段”，其他字段若想出现在select中则必须包含在聚合函数中，常见的聚合函数如下表：
+   sum(列名)	    求和	　　　　
+   max(列名)	    最大值	　　　　
+   min(列名)	    最小值	　　　　
+   avg(列名)	    平均值	　　　　
+   first(列名)	  第一条记录	仅Access支持
+   last(列名)	    最后一条记录	仅Access支持
+   count(列名)	  统计记录数	注意和count(*)的区别
+   
+   #### 5.1 分组后求各组平均值
+        select type, avg(number) AS numAvg from A group by type;
+  
