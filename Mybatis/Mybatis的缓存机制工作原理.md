@@ -17,11 +17,11 @@
  
  首先开启mybatis的二级缓存。
  
- sqlSession1去查询用户ID为1的用户信息，查询到用户信息会将查询数据存储到二级缓存中。
- **如果SqlSession3去执行相同的mapper下的sql，执行commit提交，清空mapper下的二级缓存区域的数据。**
- sqlSession2去查询用户id为1的用户信息，去缓存中找是否存在数据，如果存在直接从缓存中取出数据。
+  sqlSession1去查询用户ID为1的用户信息，查询到用户信息会将查询数据存储到二级缓存中。
+  **如果SqlSession3去执行相同的mapper下的sql，执行commit提交，清空mapper下的二级缓存区域的数据。**
+  sqlSession2去查询用户id为1的用户信息，去缓存中找是否存在数据，如果存在直接从缓存中取出数据。
 
 ### 一级缓存和二级缓存的区别
-  二级缓存的范围更大，多个sqlsession可以共享一个userMapper的二级缓存区域。数据类型仍然为HashMap；
-  userMapper有一个二级缓存区域**（按namespace分，如果namespace相同则使用同一个相同的二级缓存区）** 其它mapper也有自己的二级缓存区域（按namespace分）
-  每一个namespace的mapper都有一个二级缓存区域，两个mapper的namespace如果相同，这两个mapper执行sql查询导数据将存在相同的二级缓存区域中；
+    二级缓存的范围更大，多个sqlsession可以共享一个userMapper的二级缓存区域。数据类型仍然为HashMap；
+    userMapper有一个二级缓存区域**（按namespace分，如果namespace相同则使用同一个相同的二级缓存区）** 其它mapper也有自己的二级缓存区域（按namespace分）
+    每一个namespace的mapper都有一个二级缓存区域，两个mapper的namespace如果相同，这两个mapper执行sql查询导数据将存在相同的二级缓存区域中；
