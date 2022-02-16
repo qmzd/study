@@ -51,5 +51,5 @@
    count(列名)	  统计记录数	注意和count(*)的区别
    
    #### 5.1 分组后求各组平均值
-        select type, avg(number) AS numAvg from A group by type;
+        select type, avg(number) AS numAvg from A group by type; 
   
