@@ -9,7 +9,7 @@
         SELECT type,sum(number) as count FROM `t_wwgroup` GROUP BY type;
         
    返回结果：
-    ![avatar](https://images0.cnblogs.com/blog/33509/201304/28234054-ff92ae14bfe74da98c4deb8d7c78f2f8.png)
+   ![avatar](https://images0.cnblogs.com/blog/33509/201304/28234054-ff92ae14bfe74da98c4deb8d7c78f2f8.png)
         
   
   
