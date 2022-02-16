@@ -35,3 +35,35 @@
   
       <select id="getallinfo" resultType="dao.entity.PhoneInfoEntity" userCache="false">
   
+  总结：针对每次查询都需要更新的数据sql，要设置成userCache=false, 禁用二级缓存；
+  
+### Mybatis刷新缓存（就是清空缓存）
+  在mapper的同一个namespace中，如果有其他insert，update，detele操作数据后需要刷新缓存，如果不执行刷新换从就会出现脏读；
+  在statement中设置 flushCache="true" 属性，默认情况下为true,改成false则不会刷新换存，使用缓存时，如果手动修改数据库表中的查询数据会出现脏读。
+  
+     <select id="getallinfo" resultType="dao.entity.PhoneInfoEntity" userCache="false">
+     
+  总结：**一般下执行完commit操作都需要刷新缓存，flushCache=true表示刷新缓存默认情况下为true,我们不用去设置它，这样可以避免数据库脏读。**
+  
+### 二级缓存的应用场景
+  **二级缓存适用于访问多的查询请求且用户对查询结果实时性要求不高** 这种情况可以采用mybatis二级缓从技术降低数据库访问量，提高访问速度；
+  
+  业务场景比如：耗时较高的统计分析sql，电话账单查询sql等。
+  
+  实现方法： 通过设置刷新间隔时间，由mybatis每隔一段时间自动清空缓存，根据数据变化频率设置缓存刷新间隔flushInterval，比兔设置为30分钟，60分钟，24小时。根据需求定
+  
+      <cache eviction = "FIFO" flushInterval="6000" size="512" readOnly="true"/>
+      
+   flushInterval -- 刷新间隔； 默认不设置，没有刷新间隔； 设置成正整数，代表毫秒形式的间隔。
+   
+   size -- 引用数目； 可以设置为任意正整数，要记住你缓存的对象数目和你运行的可用内存资源数目，默认是1024
+   
+   readOnly -- 只读； 属性可以被设置为true或false。只读的缓存会给所有调用者返回缓存对象的相同实例；
+
+   LRU – 最近最少使用的:移除最长时间不被使用的对象。
+   
+   FIFO – 先进先出:按对象进入缓存的顺序来移除它们。
+   
+   SOFT – 软引用:移除基于垃圾回收器状态和软引用规则的对象。
+   
+   WEAK – 弱引用:更积极地移除基于垃圾收集器状态和弱引用规则的对象。
