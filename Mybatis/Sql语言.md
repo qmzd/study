@@ -29,6 +29,7 @@
         SELECT type ,remark, sum(number) as count from  t_wwgroup GROUP BY type , remark ORDER BY type DESC
         
    “多列分组”实际上就是就是按照多列（类别+摘要）合并后的值进行分组，示例4中可以看到“a, a2001, 13”为“a, a2001, 11”和“a, a2001, 2”两条记录的合并。
+   
    返回结果：
    ![avatar](https://images0.cnblogs.com/blog/33509/201304/28234156-7fb9d1f258ad4faaa26decfddc3723fc.png)
    
