@@ -29,3 +29,8 @@
   userMapper有一个二级缓存区域 **（按namespace分，如果namespace相同则使用同一个相同的二级缓存区）** 其它mapper也有自己的二级缓存区域（按namespace分）
   
   每一个namespace的mapper都有一个二级缓存区域，两个mapper的namespace如果相同，这两个mapper执行sql查询导数据将存在相同的二级缓存区域中；
+
+###  useCache配置禁用二级缓存
+  在statement中设置userCache=false可以禁用当前select语句的二级缓存，即每次查询都会发出sql去查询，默认情况true,即sql使用二级缓存。
+      <select id="getallinfo" resultType="dao.entity.PhoneInfoEntity" userCache="false">
+  
