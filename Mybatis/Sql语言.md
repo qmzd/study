@@ -56,6 +56,9 @@
    #### 5.2 分组后记录各组数目
         select type ,count(*) AS n from t_wwgroup group by type;
         
+   #### 5.3 分组后记录各组最大值
+        select type,max(number) as count from t_wwgroup GROUP BY type
+        
  ### 6. Having与Where的区别
    where 子句的作用是在对查询结果进行分组前，提前约定范围；将不符合where条件的行去掉，即在分组之前过滤数据，**where条件中不能包含聚合函数** 
        
