@@ -65,6 +65,6 @@
        select type,sum(number) as count from t_wwgroup group by type having sum(number) > 18
        例：having + where
        select type,sum(number) as count from t_wwgroup where number > 8 group by type having sum(number) > 9
-       
- ### 7. Compute 和 Compute By
+
     
+   
